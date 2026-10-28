@@ -1,6 +1,17 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-void main() => runApp(const MyApp());
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,8 +27,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: scheme,
         appBarTheme: AppBarTheme(
-          backgroundColor: scheme.primaryContainer, // vert d'eau clair
-          foregroundColor: scheme.onPrimaryContainer, // texte foncé
+          backgroundColor: scheme.primaryContainer,
+          foregroundColor: scheme.onPrimaryContainer,
         ),
       ),
       home: Scaffold(appBar: AppBar(title: const Text('StockFacile'))),
