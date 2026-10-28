@@ -31,3 +31,11 @@ GROUP BY c.id, c.nom;
 -- Q1.5.6 Valeur totale du stock
 -- Résultat : 777.5
 SELECT SUM(prix * quantite) AS valeur_stock FROM produits;
+
+
+ -- Q4.1 Insérer la catégorie Électroménager
+INSERT INTO categories (nom, description) VALUES ('Électroménager', 'Petits appareils');
+
+-- Q4.6 Insérer le produit Stylo bleu
+INSERT INTO produits (nom, prix, quantite, disponible, date_ajout, categorie_id)
+VALUES ('Stylo bleu', 0.500, 100, 1, '2026-10-05T09:00:00', 4);

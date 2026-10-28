@@ -4,8 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
+import 'screens/tests_screen.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // Windows / Linux : SQLite passe par FFI
   if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
           foregroundColor: scheme.onPrimaryContainer,
         ),
       ),
-      home: Scaffold(appBar: AppBar(title: const Text('StockFacile'))),
+      home: const TestsScreen(),
     );
   }
 }
